@@ -10,6 +10,4 @@ export const connectDB = async () => {
         console.error("Mongo DB connection failed!", error);
         process.exit(1);
     }
-}
-
-mongoose.connect(process.env.MONGO_URL as string);
+};
