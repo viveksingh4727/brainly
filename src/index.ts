@@ -5,6 +5,10 @@ import dotenv from "dotenv";
 import { connectDB } from "./db";
 import userRouter from "./routes/authRoutes";
 import contentRouter from "./routes/contentRoutes";
+import linkRouter from "./routes/linkRoutes";
+
+
+
 
 
 dotenv.config();
@@ -17,6 +21,7 @@ connectDB();
 
 app.use("/api/v1", userRouter);
 app.use("/api/v1", contentRouter);
+app.use("/api/v1", linkRouter);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
