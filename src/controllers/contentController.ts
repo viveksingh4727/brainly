@@ -17,13 +17,14 @@ export const addContentController = async ( req: AuthRequest, res: Response ) =>
             return res.status(400).json({ message: "Invalid input" });
           }
     
-          const { title, link } = parsed.data;
+          const { title, link, types } = parsed.data;
     
           await ContentModel.create({
             title,
             link,
             userId: new mongoose.Types.ObjectId(req.userId),
             tags: [],
+            types,
           });
     
           return res.status(201).json({ message: "Content created" });

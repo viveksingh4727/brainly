@@ -20,6 +20,10 @@ const contentSchema = new mongoose.Schema(
       default: [],
       ref: 'Tags',
     },
+    types: {
+      type: String,
+      default: "youtube",
+    }
   },
   { timestamps: true }
 );
