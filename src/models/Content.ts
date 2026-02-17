@@ -15,10 +15,9 @@ const contentSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    tags: {
-      type: [String],
-      default: [],
-      ref: 'Tags',
+    tag: {
+      type: String,
+      default: null,
     },
     types: {
       type: String,

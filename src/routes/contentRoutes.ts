@@ -4,8 +4,8 @@ import { addContentController, deleteContentController, getContentController } f
 
 const contentRouter = express.Router();
 
-contentRouter.post("/content",authMiddleware,  addContentController);
-contentRouter.get("/content",authMiddleware,  getContentController);
-contentRouter.post("/content/:id",authMiddleware,  deleteContentController);
+contentRouter.post("/content", authMiddleware, addContentController);
+contentRouter.get("/content", authMiddleware, getContentController);
+contentRouter.delete("/content/:id", authMiddleware, deleteContentController);
 
 export default contentRouter;

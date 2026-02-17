@@ -13,5 +13,6 @@ export const loginSchema = z.object({
 export const contentSchema = z.object({
   title: z.string(),
   link: z.string().url(),
-  types: z.string()
+  types: z.string(),
+  tag: z.string().nullable().optional(),
 });
