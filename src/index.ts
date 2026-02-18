@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://brainly-1-b894.onrender.com"
+    "https://brainly-frontend-rho.vercel.app/"
   ], 
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
