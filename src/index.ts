@@ -10,16 +10,22 @@ import linkRouter from "./routes/linkRoutes";
 
 dotenv.config();
 
+
+
 const app = express();
-app.use(express.json());
+
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://brainly-frontend-rho.vercel.app/"
-  ], 
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
+    "https://brainly-frontend-rho.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
+
+app.options("*", cors()); 
+app.use(express.json());
+
 
 connectDB();
 
