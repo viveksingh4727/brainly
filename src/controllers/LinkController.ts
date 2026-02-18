@@ -33,8 +33,9 @@ export const shareBrainController = async ( req: AuthRequest, res: Response ) =>
             hash
         });
 
+
         return res.json({
-            hash: newLink.hash
+            hash: newLink.hash,
         })
     } else {
         await LinkModel.deleteOne({
@@ -52,40 +53,38 @@ export const shareBrainController = async ( req: AuthRequest, res: Response ) =>
     }
 };
 
-export const sharedLinkController = async ( req:AuthRequest, res: Response) => {
-    try {
-        const hash = req.params.shareLink;
+export const sharedLinkController = async (req: AuthRequest, res: Response) => {
+  try {
+    const hash = req.params.shareLink;
 
-        if(!hash) {
-            return res.status(400).json({message: "Invalid Link"});
-        }
-
-        const link = await LinkModel.findOne({
-            hash
-        });
-
-        if(!link) {
-            return res.status(404).json({
-                message: "Link not found"
-            })
-        }
-
-
-        const content = await ContentModel.find({
-            userId: link.userId,
-        });
-
-        const user = await UserModel.findOne({
-            userId: link.userId,
-        });
-
-        res.json({
-            username: user?.username,
-            content, 
-        })
-    } catch (error) {
-        return res.status(500).json({
-            message: "Something went wrong"
-        })
+    if (!hash) {
+      return res.status(400).json({ message: "Invalid link" });
     }
-}
+
+    const link = await LinkModel.findOne({ hash });
+
+    if (!link) {
+      return res.status(404).json({ message: "Link not found" });
+    }
+
+    const user = await UserModel.findById(link.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const content = await ContentModel.find({
+      userId: link.userId,
+    });
+
+    return res.json({
+      username: user.username,
+      content,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong",
+    });
+  }
+};
